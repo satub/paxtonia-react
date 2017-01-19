@@ -23,7 +23,7 @@ export function gameReducer(state = {isFetching: false, data: {}}, action) {
 export function inputReducer(state="", action) {
   switch (action.type) {
    case 'TRACK_INPUT':
-    console.log(action.payload);
+    //console.log(action.payload);
     return action.payload
    default:
     return state

@@ -18,22 +18,30 @@ export const requestGame = () => ({
 
 export const createGame = () => (dispatch) => {
   dispatch(requestGame())
-  var url = `${BASE_URL}/newgame`
+  let url = `${BASE_URL}/newgame`
   return fetch(url)
           .then(response => response.json())
           .then((json) => dispatch(storeGame(json)))
 }
 
 export const TalkToNPC = (text, id) => (dispatch) => {
-  var data = {'talk': {'input': text}}
-  var req = new Request(`${BASE_URL}/games/${id}/talk`, {mode: 'no-cors', method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
+  //console.log(text)
+  let data = {'talk': {'input': text}}
+  //console.log(data)
+  //var req = new Request(`${BASE_URL}/games/${id}/talk`, {mode: 'no-cors', method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
   return (
-    fetch(req).then(response => response.json())
+    fetch(`${BASE_URL}/games/${id}/talk`,
+      {//mode: 'no-cors',
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)}
+    ).then(response => response.json())
     .then(json => dispatch(addResponse(json)))
     )
 }
 
 export function addResponse(json) {
+  console.log(json)
   return {
     type: 'ADD_TO_CONVO',
     payload: json

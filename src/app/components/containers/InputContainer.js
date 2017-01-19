@@ -4,7 +4,7 @@ import { TalkToNPC, trackInput } from '../../actions/actions'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    submitClick: () => dispatch(TalkToNPC(ownProps.inputVal, ownProps.game_id)),
+    submitClick: (text, id) => dispatch(TalkToNPC(ownProps.inputVal, ownProps.game_id)),
     trackChange: (val) => dispatch(trackInput(val))
   }
 }

@@ -26,7 +26,7 @@ export const createGame = () => (dispatch) => {
 
 export const TalkToNPC = (text, id) => (dispatch) => {
   var data = {'talk': {'input': text}}
-  var req = new Request(`${BASE_URL}/games/${id}/talk`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
+  var req = new Request(`${BASE_URL}/games/${id}/talk`, {mode: 'no-cors', method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
   return (
     fetch(req).then(response => response.json())
     .then(json => dispatch(addResponse(json)))
@@ -39,4 +39,3 @@ export function addResponse(json) {
     payload: json
   }
 }
-
